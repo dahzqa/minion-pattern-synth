@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Pattern Synth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/styles/main.css" />
+  </head>
+  <body>
+    <div class="stage">
+      <main class="synth" aria-label="Музыкальный веб-синтезатор с паттернами">
+        <section class="visual-voice" aria-label="Ударные — три варианта бита">
+          <img
+            class="visual-voice__art"
+            src="./assets/beat-panel.svg"
+            alt=""
+            draggable="false"
+          />
+          <div class="visual-voice__pads" aria-label="Выбор бита">
+            <button class="visual-pad" type="button" data-drum-pattern="0" aria-label="Бит A" aria-pressed="false"></button>
+            <button class="visual-pad" type="button" data-drum-pattern="1" aria-label="Бит B" aria-pressed="false"></button>
+            <button class="visual-pad" type="button" data-drum-pattern="2" aria-label="Бит C" aria-pressed="false"></button>
+          </div>
+        </section>
+
+        <section class="panel panel--texture" aria-label="Атмосфера и дополнительные эффекты">
+          <div class="texture-control texture-control--one">
+            <label class="control-line__label" for="texture-volume">громкость</label>
+            <input
+              id="texture-volume"
+              class="slider"
+              type="range"
+              min="0"
+              max="0.7"
+              step="0.01"
+              value="0.32"
+              data-layer="texture"
+              data-control="volume"
+            />
+          </div>
+
+          <div class="texture-control texture-control--two">
+            <label class="control-line__label" for="texture-space">пространство</label>
+            <input
+              id="texture-space"
+              class="slider"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.58"
+              data-layer="texture"
+              data-control="space"
+            />
+          </div>
+
+          <div class="texture-pattern texture-pattern--one">
+            <span class="play-key__label">дым</span>
+            <button class="circle-button" type="button" data-texture-pattern="0" aria-label="Атмосфера дым" aria-pressed="false"></button>
+          </div>
+
+          <div class="texture-pattern texture-pattern--two">
+            <span class="play-key__label">свет</span>
+            <button class="circle-button" type="button" data-texture-pattern="1" aria-label="Атмосфера свет" aria-pressed="false"></button>
+          </div>
+
+          <div class="texture-effects button-group" aria-label="Эффекты атмосферы">
+            <span class="button-group__label">эффекты</span>
+            <button type="button" class="rect-button" data-texture-effect="wide" aria-pressed="false">широко</button>
+            <button type="button" class="rect-button" data-texture-effect="pulse" aria-pressed="false">пульс</button>
+          </div>
+        </section>
+
+        <section class="panel panel--voice panel--bass" aria-label="Бас — три паттерна">
+          <div class="control-line">
+            <label class="control-line__label" for="bass-frequency">частота</label>
+            <input id="bass-frequency" class="slider" type="range" min="180" max="4200" step="1" value="1250" data-layer="bass" data-control="frequency" />
+          </div>
+          <div class="control-line">
+            <label class="control-line__label" for="bass-delay">задержка</label>
+            <input id="bass-delay" class="slider" type="range" min="0" max="0.65" step="0.01" value="0.08" data-layer="bass" data-control="delay" />
+          </div>
+          <div class="control-line">
+            <label class="control-line__label" for="bass-volume">громкость</label>
+            <input id="bass-volume" class="slider" type="range" min="0" max="0.9" step="0.01" value="0.62" data-layer="bass" data-control="volume" />
+          </div>
+          <div class="control-line">
+            <label class="control-line__label" for="bass-drive">драйв</label>
+            <input id="bass-drive" class="slider" type="range" min="0" max="0.75" step="0.01" value="0.15" data-layer="bass" data-control="drive" />
+          </div>
+
+          <div class="button-group" aria-label="Тембр баса">
+            <span class="button-group__label">тембр</span>
+            <button type="button" class="rect-button" data-bass-preset data-preset="sub">саб</button>
+            <button type="button" class="rect-button is-active" data-bass-preset data-preset="soft">мягкий</button>
+            <button type="button" class="rect-button" data-bass-preset data-preset="hard">жёсткий</button>
+            <button type="button" class="rect-button" data-bass-preset data-preset="dirty">грязь</button>
+          </div>
+
+          <div class="play-row" aria-label="Выбор басовой партии">
+            <div class="play-key">
+              <span class="play-key__label">бас 1</span>
+              <button class="circle-button" type="button" data-bass-pattern="0" aria-label="Басовый паттерн 1" aria-pressed="false"></button>
+            </div>
+            <div class="play-key">
+              <span class="play-key__label">бас 2</span>
+              <button class="circle-button" type="button" data-bass-pattern="1" aria-label="Басовый паттерн 2" aria-pressed="false"></button>
+            </div>
+            <div class="play-key">
+              <span class="play-key__label">бас 3</span>
+              <button class="circle-button" type="button" data-bass-pattern="2" aria-label="Басовый паттерн 3" aria-pressed="false"></button>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel panel--voice panel--melody" aria-label="Мелодия — три паттерна">
+          <div class="control-line">
+            <label class="control-line__label" for="melody-frequency">частота</label>
+            <input id="melody-frequency" class="slider" type="range" min="600" max="10000" step="1" value="4700" data-layer="melody" data-control="frequency" />
+          </div>
+          <div class="control-line">
+            <label class="control-line__label" for="melody-delay">задержка</label>
+            <input id="melody-delay" class="slider" type="range" min="0" max="0.75" step="0.01" value="0.28" data-layer="melody" data-control="delay" />
+          </div>
+          <div class="control-line">
+            <label class="control-line__label" for="melody-volume">громкость</label>
+            <input id="melody-volume" class="slider" type="range" min="0" max="0.8" step="0.01" value="0.44" data-layer="melody" data-control="volume" />
+          </div>
+          <div class="control-line">
+            <label class="control-line__label" for="melody-space">пространство</label>
+            <input id="melody-space" class="slider" type="range" min="0" max="0.9" step="0.01" value="0.4" data-layer="melody" data-control="space" />
+          </div>
+
+          <div class="button-group" aria-label="Характер мелодии">
+            <span class="button-group__label">характер</span>
+            <button type="button" class="rect-button" data-melody-preset data-preset="air">воздух</button>
+            <button type="button" class="rect-button is-active" data-melody-preset data-preset="glass">стекло</button>
+            <button type="button" class="rect-button" data-melody-preset data-preset="pulse">пульс</button>
+            <button type="button" class="rect-button" data-melody-preset data-preset="mist">туман</button>
+          </div>
+
+          <div class="play-row" aria-label="Выбор мелодии">
+            <div class="play-key">
+              <span class="play-key__label">мел 1</span>
+              <button class="circle-button" type="button" data-melody-pattern="0" aria-label="Мелодия 1" aria-pressed="false"></button>
+            </div>
+            <div class="play-key">
+              <span class="play-key__label">мел 2</span>
+              <button class="circle-button" type="button" data-melody-pattern="1" aria-label="Мелодия 2" aria-pressed="false"></button>
+            </div>
+            <div class="play-key">
+              <span class="play-key__label">мел 3</span>
+              <button class="circle-button" type="button" data-melody-pattern="2" aria-label="Мелодия 3" aria-pressed="false"></button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./src/js/main.js"></script>
+  </body>
+</html>
